@@ -4,7 +4,7 @@ import Star from './Star';
 
 const containerStyle = {
   display: 'flex',
-  alignItmes: 'center',
+  alignItems: 'center',
   gap: '16px',
 };
 
@@ -26,16 +26,17 @@ StarRating.propTypes = {
 export default function StarRating({
   maxRating = 10,
   color = '#fcc419',
-  size = 48,
+  size = 24,
   messages = [],
   defaultRating = 0,
-  className = '',
+  onSetRating,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(i) {
     setRating(i);
+    onSetRating(i);
   }
 
   function handleTempRating(i) {
