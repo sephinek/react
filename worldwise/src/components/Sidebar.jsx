@@ -1,10 +1,11 @@
+import { Outlet } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import Logo from './Logo';
 import AppNav from './AppNav';
-import { Outlet, useOutletContext } from 'react-router-dom';
+import { useCities } from '../contexts/CitiesContext';
 
 export default function Sidebar() {
-  const [cities, isLoading] = useOutletContext();
+  const { cities, isLoading } = useCities();
 
   return (
     <div className={styles.sidebar}>

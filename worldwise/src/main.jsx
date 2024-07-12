@@ -5,7 +5,6 @@ import {
   RouterProvider,
   Navigate,
 } from 'react-router-dom';
-import App from './App.jsx';
 import Homepage from './pages/Homepage';
 import Pricing from './pages/Pricing';
 import Product from './pages/Product';
@@ -16,35 +15,41 @@ import City from './components/City';
 import CountriesList from './components/CountryList.jsx';
 import Form from './components/Form.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
+import { AuthProvider } from './contexts/FackeAuthContext.jsx';
+import { CitiesProvider } from './contexts/CitiesContext.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    children: [
-      { path: '/', element: <Homepage /> },
-      { path: 'pricing', element: <Pricing /> },
-      { path: 'product', element: <Product /> },
-      { path: 'login', element: <Login /> },
-      {
-        path: 'app',
-        element: <AppLayout />,
-        children: [
-          { index: true, element: <Navigate to='cities' replace={true} /> },
-          { path: 'cities', element: <CityList /> },
-          { path: 'cities/:id', element: <City /> },
-          { path: 'countries', element: <CountriesList /> },
-          { path: 'form', element: <Form /> },
-        ],
-      },
-    ],
+    element: <Homepage />,
     errorElement: <PageNotFound />,
+  },
+  { path: 'pricing', element: <Pricing /> },
+  { path: 'product', element: <Product /> },
+  { path: 'login', element: <Login /> },
+  {
+    path: 'app',
+    element: <AppLayout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to='cities' replace />,
+      },
+      { path: 'cities', element: <CityList /> },
+      { path: 'cities/:id', element: <City /> },
+      { path: 'countries', element: <CountriesList /> },
+      { path: 'form', element: <Form /> },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <CitiesProvider>
+        <RouterProvider router={router} />
+      </CitiesProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
