@@ -9,13 +9,14 @@ import Homepage from './pages/Homepage';
 import Pricing from './pages/Pricing';
 import Product from './pages/Product';
 import Login from './pages/Login';
+import ProtectedRoute from './pages/ProtectedRoute.jsx';
 import AppLayout from './pages/AppLayout.jsx';
 import CityList from './components/CityList.jsx';
 import City from './components/City';
 import CountriesList from './components/CountryList.jsx';
 import Form from './components/Form.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
-import { AuthProvider } from './contexts/FackeAuthContext.jsx';
+import { AuthProvider } from './contexts/FakeAuthContext.jsx';
 import { CitiesProvider } from './contexts/CitiesContext.jsx';
 import './index.css';
 
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
   { path: 'login', element: <Login /> },
   {
     path: 'app',
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
