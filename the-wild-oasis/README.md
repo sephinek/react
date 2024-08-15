@@ -1,4 +1,4 @@
-# The Wild Oasis: Hotel Management Application
+# The Wild Oasis🏕️: Hotel Management Application
 
 The Wild Oasis is a comprehensive hotel management application designed for a luxury wood cabin hotel. It empowers employees to efficiently manage bookings, cabins, and guest information, while providing a suite of tools for internal use. 
 
